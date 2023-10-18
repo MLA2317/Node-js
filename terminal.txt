@@ -1,0 +1,16 @@
+ npm install -g jshint - bu errorlarni korish ishlatiladi
+
+telnet localhost 8000 - serverni ishlavotkanida foydalanamiz
+
+npm i -g npm@9.9.1 - bu npm paketini yengilash, huddi djnago oxshab pip install vazifa bajaradi
+npm init - package.sjon fail yaratib beradi
+package.json - bu failni ichidagi malumotlarni toldirtiradi
+npm init --yes - bu barcha savollariga javob berib fail yaratib beradi
+npm i underscore - (Underscore kutubxonasini o'rnatadi va package.json faylida "dependencies" qismiga qo'shiladi.
+Underscore kutubxonasi ishlatilganda kodingizni optimallashtirish,
+kodni o'qimliroq yozish va bir nechta ma'lumot turlari bilan tez ishlash imkoniyatini beradi.)
+npm i mongoose - bu MongoDB yani models yaratish uchun
+npm list - bu barcha paketlarni versiyasini korsatadi
+npm view - bu paketlarni malumotini korsatib beradi
+npm ourdate - versalarni korsatadi
+npm update - versalarni yengilab beradi

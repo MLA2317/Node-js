@@ -1,0 +1,71 @@
+EvenEmitter Mini Project
+
+#Alarm
+
+const EventEmitter = require('events');
+
+class Clock extends EventEmitter {
+    start(hour, minute) {
+        this.targetHour = hour;
+        this.targetMinute = minute;
+        this.checkTime();
+    }
+
+    checkTime() {
+        const current = new Date();
+        if (current.getHours() === this.targetHour && current.getMinutes() === this.targetMinute) {
+            this.emit('alarm');
+            return;
+        }
+        setTimeout(() => this.checkTime(), 1000 * 60); // Har bir daqiqa tekshiriladi
+    }
+}
+
+const myClock = new Clock();
+myClock.on('alarm', () => {
+    console.log('Uyg`ongan vaqtingiz keladi!');
+});
+myClock.start(new Date().getHours(), new Date().getMinutes() + 1); // Bir daqiqa so'ng uyg`ongan vaqti beradi
+
+
+
+# Fail
+
+const fs = require('fs');
+const EventEmitter = require('events');
+
+class FileWatcher extends EventEmitter {
+    watch(filePath) {
+        fs.watch(filePath, (eventType, filename) => {
+            if (eventType === 'change') {
+                this.emit('fileChanged', filename);
+            }
+        });
+    }
+}
+
+const watcher = new FileWatcher();
+watcher.on('fileChanged', (filename) => {
+    console.log(`Fayl o'zgardi: ${filename}`);
+});
+watcher.watch('./path/to/your/file.txt');
+
+
+# Order
+
+const EventEmitter = require('events');
+
+class OrderSystem extends EventEmitter {
+    placeOrder(orderDetails) {
+        console.log('Buyurtma qabul qilindi:', orderDetails);
+        setTimeout(() => {
+            this.emit('orderProcessed', orderDetails);
+        }, 2000); // 2 sekunddan so'ng buyurtma amalga oshiriladi
+    }
+}
+
+const system = new OrderSystem();
+system.on('orderProcessed', (orderDetails) => {
+    console.log('Buyurtma amalga oshirildi:', orderDetails);
+});
+system.placeOrder({ item: 'Pizza', quantity: 1 });
